@@ -1,0 +1,425 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "La presente es la documentación de la API REST para habits.ai  ",
+    "description": "En esta documentación se encuentran listados los endpoints de comunicacion con la API de habits, De la misma manera se recomianda leer atentamente y hacer uso correcto de los recursos aqui mostrados ",
+    "version": "3.0.0.3"
+  },
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/web/api/admin_roles": {
+      "get": {
+        "x-swagger-router-controller": "admin_roles",
+        "operationId": "admin_roles_get01",
+        "tags": [
+          "admin_roles"
+        ],
+        "description": "Using this path to get all the data in catalogue ",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "description": "It is used to request  the API from external APP you can use a simple token, Bearer token or Basic Auth. You must only use basic auth from a perfil of user and only request Server to Server to protect the information.    ",
+            "required": false
+          },
+          {
+            "name": "JSON query",
+            "description": "We use this this parameters to rich our requests.\n \n Example: { strictsearch:{ name:'Afghanistan' }, sort:{ name:'desc'}, 'search':{'name':'< something to search like true, false, or %word%  >'},paginate:{limit:10, page:1} select:{ name:1, id:1 } ; \n Meaning: \n\n sort: order by field in desc or asc \n paginate: limits results by page an limit(how namy) per page \n strictsearch: make a strict search (match case) \n avoid: avoids contents that includes that (match case) \n like: makes a subquery frm  principal query %find% \n select: returns onliy the fiels you wanna \n search: search as bolean or as %word% in SQL \n SOON more search parameters ",
+            "in": "query",
+            "type": "object",
+            "collectionFormat": "multi",
+            "items": {
+              "type": "object"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of /api/admin_roles",
+            "examples": {
+              "application/json": {
+                "mesage": "OK",
+                "success": true,
+                "data": [
+                  {
+                    "active": true,
+                    "_id": "5cba9d07c9bef54bb60d2e0a",
+                    "name": "Super",
+                    "description": "Super Administrator Roles",
+                    "dt_reg": "2019-04-20T04:16:00.000Z",
+                    "__v": 0
+                  },
+                  {
+                    "active": true,
+                    "_id": "5cbb4f385b7f7152f9208069",
+                    "name": "Content",
+                    "description": "will be the admin for content in the webpage",
+                    "dt_reg": "2019-04-20T16:55:21.000Z",
+                    "__v": 0
+                  }
+                ]
+              }
+            }
+          },
+          "403": {
+            "description": "Forbbiden",
+            "examples": {
+              "application/json": {
+                "success": false,
+                "message": "403 forbidden  - Error Mesage ",
+                "error": "error_data"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "examples": {
+              "application/json": {
+                "success": false,
+                "message": "404 not found  - Error Mesage ",
+                "error": "error_data"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "examples": {
+              "application/json": {
+                "success": false,
+                "message": "500  internal server error  - Error Mesage ",
+                "error": "error_data"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "x-swagger-router-controller": "country",
+        "operationId": "admin_roles_post02",
+        "tags": [
+          "admin_roles"
+        ],
+        "description": "Using this path to save a new document in catalogue",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "description": "It is used to request  the API from external APP you can use a simple token, Bearer token or Basic Auth. You must only use basic auth from a perfil of user and only request Server to Server to protect the information.    ",
+            "required": false
+          },
+          {
+            "name": "JSON object",
+            "description": "We use this object to save data in collection.",
+            "in": "body",
+            "type": "object",
+            "collectionFormat": "multi",
+            "items": {
+              "type": "object"
+            },
+            "required": false,
+            "example": {
+              "active": true,
+              "_id": "5cba9d07c9bef54bb60d2e0a",
+              "name": "Super",
+              "description": "Super Administrator Roles",
+              "dt_reg": "2019-04-20T04:16:00.000Z",
+              "__v": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a saved object",
+            "examples": {
+              "application/json": {
+                "mesage": "OK",
+                "success": true,
+                "data": {
+                  "active": true,
+                  "_id": "5cba9d07c9bef54bb60d2e0a",
+                  "name": "Super",
+                  "description": "Super Administrator Roles",
+                  "dt_reg": "2019-04-20T04:16:00.000Z",
+                  "__v": 0
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbbiden",
+            "examples": {
+              "application/json": {
+                "success": false,
+                "message": "403 forbidden  - Error Mesage ",
+                "error": "error_data"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "examples": {
+              "application/json": {
+                "success": false,
+                "message": "404 not found  - Error Mesage ",
+                "error": "error_data"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "examples": {
+              "application/json": {
+                "success": false,
+                "message": "500  internal server error  - Error Mesage ",
+                "error": "error_data"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/api/admin_roles/{id}": {
+      "get": {
+        "x-swagger-router-controller": "country",
+        "operationId": "admin_roles_getone03",
+        "tags": [
+          "admin_roles"
+        ],
+        "description": "Using this path to get an element from catalogue ",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "description": "It is used to request  the API from external APP you can use a simple token, Bearer token or Basic Auth. You must only use basic auth from a perfil of user and only request Server to Server to protect the information.    ",
+            "required": false
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "It is used to identify an specific element from catalogue by ID",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns an element form catalogue",
+            "examples": {
+              "application/json": {
+                "mesage": "OK",
+                "success": true,
+                "data": {
+                  "active": true,
+                  "_id": "5cba9d07c9bef54bb60d2e0a",
+                  "name": "Super",
+                  "description": "Super Administrator Roles",
+                  "dt_reg": "2019-04-20T04:16:00.000Z",
+                  "__v": 0
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbbiden",
+            "examples": {
+              "application/json": {
+                "success": false,
+                "message": "403 forbidden  - Error Mesage ",
+                "error": "error_data"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "examples": {
+              "application/json": {
+                "success": false,
+                "message": "404 not found  - Error Mesage ",
+                "error": "error_data"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "examples": {
+              "application/json": {
+                "success": false,
+                "message": "500  internal server error  - Error Mesage ",
+                "error": "error_data"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "admin_roles_delete01",
+        "tags": [
+          "admin_roles"
+        ],
+        "description": "Using this path to delete an element from catalogue ",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "description": "It is used to request  the API from external APP you can use a simple token, Bearer token or Basic Auth. You must only use basic auth from a perfil of user and only request Server to Server to protect the information.    ",
+            "required": false
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "It is used to identify an specific element from catalogue by ID",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the element that was deleted from catalogue",
+            "examples": {
+              "application/json": {
+                "mesage": "OK",
+                "success": true,
+                "data": {
+                  "active": true,
+                  "_id": "5cba9d07c9bef54bb60d2e0a",
+                  "name": "Super",
+                  "description": "Super Administrator Roles",
+                  "dt_reg": "2019-04-20T04:16:00.000Z",
+                  "__v": 0
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbbiden",
+            "examples": {
+              "application/json": {
+                "success": false,
+                "message": "403 forbidden  - Error Mesage ",
+                "error": "error_data"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "examples": {
+              "application/json": {
+                "success": false,
+                "message": "404 not found  - Error Mesage ",
+                "error": "error_data"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "examples": {
+              "application/json": {
+                "success": false,
+                "message": "500  internal server error  - Error Mesage ",
+                "error": "error_data"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "admin_roles_put01",
+        "tags": [
+          "admin_roles"
+        ],
+        "description": "Using this path to update an element from catalogue ",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "description": "It is used to request  the API from external APP you can use a simple token, Bearer token or Basic Auth. You must only use basic auth from a perfil of user and only request Server to Server to protect the information.    ",
+            "required": false
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "It is used to identify an specific element from catalogue by ID",
+            "required": false
+          },
+          {
+            "name": "JSON object",
+            "description": "We use this object to update data in collection.",
+            "in": "body",
+            "type": "object",
+            "collectionFormat": "multi",
+            "items": {
+              "type": "object"
+            },
+            "required": false,
+            "example": {
+              "active": true,
+              "_id": "5cba9d07c9bef54bb60d2e0a",
+              "name": "Super",
+              "description": "Super Administrator Roles",
+              "dt_reg": "2019-04-20T04:16:00.000Z",
+              "__v": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the element that was updated in catalogue",
+            "examples": {
+              "application/json": {
+                "mesage": "OK",
+                "success": true,
+                "data": {
+                  "active": true,
+                  "_id": "5cba9d07c9bef54bb60d2e0a",
+                  "name": "Super",
+                  "description": "Super Administrator Roles",
+                  "dt_reg": "2019-04-20T04:16:00.000Z",
+                  "__v": 0
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbbiden",
+            "examples": {
+              "application/json": {
+                "success": false,
+                "message": "403 forbidden  - Error Mesage ",
+                "error": "error_data"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "examples": {
+              "application/json": {
+                "success": false,
+                "message": "404 not found  - Error Mesage ",
+                "error": "error_data"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "examples": {
+              "application/json": {
+                "success": false,
+                "message": "500  internal server error  - Error Mesage ",
+                "error": "error_data"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
